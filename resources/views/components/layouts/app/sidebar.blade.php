@@ -64,13 +64,7 @@
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />
-                    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                        @csrf
-                        <button type="submit" style="background: none; border: none; color: blue; text-decoration: underline; cursor: pointer;">
-                    salir
-                        </button>
-                    </form>
-                    
+
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full" data-test="logout-button">
