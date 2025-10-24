@@ -2,6 +2,7 @@
     <div class="me-10 w-full pb-4 md:w-[220px]">
         <flux:navlist>
             <flux:navlist.item :href="route('profile.edit')" wire:navigate>{{ __('Perfil') }}</flux:navlist.item>
+            <flux:navlist.item :href="route('worker.edit')" wire:navigate>{{ __('Operarios') }}</flux:navlist.item>
             <flux:navlist.item :href="route('password.edit')" wire:navigate>{{ __('Contraseña') }}</flux:navlist.item>
             <flux:navlist.item :href="route('appearance.edit')" wire:navigate>{{ __('Apariencia') }}</flux:navlist.item>
         </flux:navlist>
