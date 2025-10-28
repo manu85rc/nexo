@@ -1,5 +1,4 @@
 <div class="max-w-3xl mx-auto p-6 rounded-2xl shadow">
-
     <form wire:submit.prevent="save" class="space-y-4">
 
         <div>
@@ -94,17 +93,6 @@
             <x-action-message class="me-3" on="savedok">
                 {{ __('Saved.') }}
             </x-action-message>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
+        </div>  
     </form>
 </div>

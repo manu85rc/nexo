@@ -16,6 +16,7 @@ class WorkerForm extends Component
     public $dni;
     public $foto;
     public $skills = [];
+    public $request;
 
     protected $rules = [
         'telefono' => 'required|string',
@@ -57,13 +58,36 @@ class WorkerForm extends Component
             ]
         );
 
-        // session()->flash('message', 'Perfil guardado correctamente ✅');
-        // session()->flash('messagex', 'Perfil guardado correctamente ✅');
+
+        $previousUrl = session('_previous')['url'] ?? '';
+        $previousPath = ltrim(parse_url($previousUrl, PHP_URL_PATH), '/'); // quita la barra inicial
+        
+
         $this->dispatch('savedok');
+        if ($previousPath === 'worker') {
+            return redirect('dashboard');
+        }
+
+        // return redirect('settings/worker');
+
+
+
+
+
+
+
+
+
+
+
+
+        
     }
 
     public function render()
     {
+  
+
         return view('livewire.worker-form');
     }
 }
