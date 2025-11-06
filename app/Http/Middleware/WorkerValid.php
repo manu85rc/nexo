@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\WorkerProfile;
+use App\Models\Worker;
 
 class WorkerValid
 {
@@ -18,7 +18,7 @@ class WorkerValid
     {
 
 
-        if (!WorkerProfile::where('user_id', auth()->user()->id)->exists()) {
+        if (!Worker::where('user_id', auth()->user()->id)->exists()) {
 
             // return view('home');    
             return redirect('worker');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,13 +16,28 @@ class WorkerForm extends Component
     public $dni;
     public $foto;
     public $skills = [];
+    public $request;
 
     protected $rules = [
         'telefono' => 'required|string',
-        'dni' => 'required|string',
+        'dni' => 'nullable|string',
         'foto' => 'nullable|image|max:2048',
         'skills' => 'array',
     ];
+
+
+    public function mount()
+    {
+        $profile = WorkerProfile::where('user_id', Auth::id())->first();
+
+        if ($profile) {
+            $this->telefono = $profile->telefono;
+            $this->tiene_whatsapp = $profile->tiene_whatsapp;
+            $this->dni = $profile->dni;
+            $this->skills = $profile->skills ?? [];
+        }
+    }
+
 
     public function save()
     {
@@ -43,11 +58,26 @@ class WorkerForm extends Component
             ]
         );
 
-        session()->flash('message', 'Perfil guardado correctamente ✅');
+
+        $previousUrl = session('_previous')['url'] ?? '';
+        $previousPath = ltrim(parse_url($previousUrl, PHP_URL_PATH), '/'); // quita la barra inicial
+        
+
+        $this->dispatch('savedok');
+        if ($previousPath === 'worker') {
+            return redirect('dashboard');
+        }
+
+        // return redirect('settings/worker');
+
+
+        
     }
 
     public function render()
     {
+  
+
         return view('livewire.worker-form');
     }
 }

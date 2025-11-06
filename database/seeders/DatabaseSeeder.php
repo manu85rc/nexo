@@ -13,11 +13,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $user = User::query()->first();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (! $user) {
+            $user = User::factory()->create([
+                'name' => 'Super Admin',
+                'email' => 'admin@example.com',
+            ]);
+        }
+
+        $roleClass = 'Spatie\\Permission\\Models\\Role';
+        $role = $roleClass::findOrCreate('super-admin');
+        $user->assignRole($role);
     }
 }
