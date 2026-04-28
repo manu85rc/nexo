@@ -164,7 +164,7 @@ class UserForm
                 ->disk('public')
                 ->directory('dni_photos')
                 ->image()
-                ->imageEditor()
+                // ->imageEditor()
                 ->visibility('public')
                 ->previewable(),
                 
